@@ -1,4 +1,5 @@
 %% Punto 3.a
+load Heart.mat
 Edad=heart_data.age;
 Edad=Edad/365;
 %% Punto 3.B
@@ -73,12 +74,16 @@ y=[Hombresmen Mujeresmen ; Hombresmay Mujeresmay];
 bar(x,y)
 title("Hombres y mujeres con problemas cardiacos")
 legend("Hombres","Mujeres")
-%% Punto 6.a
+%% Punto 6
 Col=heart_data.cholesterol;
-gscatter (imc,Col)
-%% Punto 6.b
 Gluc=heart_data.gluc;
+tiledlayout(2,1)
+nexttile
+gscatter (imc,Col)
+title("Grafica de Imc vs Colesterol-Grafica de Glucosa vs Presion arterial media")
+nexttile
 gscatter (Gluc,Ap)
+title("Grafica de Glucosa vs Presion arterial media")
 %% Punto 7
 Con=Hombresmay+Hombresmen+Mujeresmay+Mujeresmen;
 Sin=T-Con;
@@ -95,7 +100,7 @@ mediaImc=Imccon/Con;
 
 disp ("La media de IMC de personas con problemas cardiacos es de "+ mediaImc) 
 
-Imccuadrada=(imc-medicaImc);
+Imccuadrada=(imc-mediaImc);
 Imccuadrada=Imccuadrada.*Imccuadrada;
 Imcsuma=0;
 for i= 1:T 
@@ -224,9 +229,9 @@ else
         disp ("-Si hace ejercicio");
 end
 if imc(Num)<=18.5
-        Imc(Num)="Esta bajo de peso";
+        disp ("Esta bajo de peso");
     elseif 18.5<=imc(i) && imc(i)<=25
-        Imc(Num)="Tiene un peso adecuado";
+        disp ("Tiene un peso adecuado");
     else 
-        Imc(Num)="Tiene sobrepeso";
+        disp ("Tiene sobrepeso");
     end
