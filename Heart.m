@@ -47,6 +47,7 @@ Ap=Sis-Dias/3;
 Ap=Ap+Dias;
 heart_data.presionarterialmedia=Ap;
 %% Punto 5
+figure(1)
 Hombresmen=0;
 Mujeresmen=0;
 Hombresmay =0;
@@ -74,16 +75,23 @@ y=[Hombresmen Mujeresmen ; Hombresmay Mujeresmay];
 bar(x,y)
 title("Hombres y mujeres con problemas cardiacos")
 legend("Hombres","Mujeres")
-%% Punto 6
+xlabel("Rangos de edades")
+ylabel("Personas con PC")
+%% Punto 6 
+figure(2)
 Col=heart_data.cholesterol;
 Gluc=heart_data.gluc;
 tiledlayout(2,1)
 nexttile
 gscatter (imc,Col)
-title("Grafica de Imc vs Colesterol-Grafica de Glucosa vs Presion arterial media")
+title("Grafica de Imc vs Colesterol")
+xlabel("Indice de masa corporal")
+ylabel("Niveles de colesterol")
 nexttile
 gscatter (Gluc,Ap)
 title("Grafica de Glucosa vs Presion arterial media")
+xlabel("Nivel de glucosa")
+ylabel("Presion arterial media")%Falta separarlos de con y sin problemas
 %% Punto 7
 Con=Hombresmay+Hombresmen+Mujeresmay+Mujeresmen;
 Sin=T-Con;
