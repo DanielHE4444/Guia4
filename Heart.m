@@ -81,6 +81,16 @@ ylabel("Personas con PC")
 figure(2)
 Col=heart_data.cholesterol;
 Gluc=heart_data.gluc;
+numcon=0;
+for i= 1:T %%Mayores
+     if Edad(i)<50 && PC(i)==1 && Gen(i) ==1 
+        Hombresmay=Hombresmay+1;
+     elseif Edad(i)>50 && PC(i)==1 && Gen(i)==2
+        Mujeresmay=Mujeresmay+1;
+     end
+end
+
+
 tiledlayout(2,1)
 nexttile
 gscatter (imc,Col)
@@ -135,8 +145,8 @@ imcsum=0;
 for i= 1:T 
     imcsum=imcsum+imccuadrada(i);
 end
-desestandar=imcsum/Sin;
-disp ("La desviacion estandar de IMC de personas sin problemas cardiacos es de "+desestandar)
+desestandarimc=imcsum/Sin;
+disp ("La desviacion estandar de IMC de personas sin problemas cardiacos es de "+desestandarimc)
 %% 7.b PAM (Presión arterial media) Con
 Pam=0;
 for i= 1:T 
@@ -157,62 +167,62 @@ end
 desestandar=Pamsum/Con;
 disp ("La desviacion estandar de PAM de personas con problemas cardiacos es de "+desestandar)
 %% 7.b PAM Sin
-Pam=0;
+Pams=0;
 for i= 1:T 
      if PC(i)==0
-        Pam=Pam+Ap(i);
+        Pams=Pams+Ap(i);
      else
-        Pam;
+        Pams;
      end
 end
-Media=Pam/Sin;
-disp ("La media de PAM de personas Sin problemas cardiacos es de  "+Media)
-cuadrada=(Ap-Media);
-cuadrada=cuadrada.*cuadrada;
-Pamsum=0;
+Mediaps=Pams/Sin;
+disp ("La media de PAM de personas Sin problemas cardiacos es de  "+Mediaps)
+cuadradaps=(Ap-Mediaps);
+cuadradaps=cuadradaps.*cuadradaps;
+Pamsums=0;
 for i= 1:T 
-    Pamsum=Pamsum+cuadrada(i);
+    Pamsums=Pamsums+cuadradaps(i);
 end
-desestandar=Pamsum/Sin;
-disp ("La desviacion estandar de PAM de personas sin problemas cardiacos es de "+desestandar)
+desestandarps=Pamsums/Sin;
+disp ("La desviacion estandar de PAM de personas sin problemas cardiacos es de "+desestandarps)
 %% 7.c Colosterlor Con
-Pam=0;
+Pamcol=0;
 for i= 1:T 
      if PC(i)==1
-        Pam=Pam+Col(i);
+        Pamcol=Pamcol+Col(i);
      else
-        Pam;
+        Pamcol;
      end
 end
-Media=Pam/Con;
-disp ("La media del nivel de colesterol de personas con problemas cardiacos es de  "+Media)
-cuadrada=(Col-Media);
-cuadrada=cuadrada.*cuadrada;
-Pamsum=0;
+Mediacol=Pamcol/Con;
+disp ("La media del nivel de colesterol de personas con problemas cardiacos es de  "+Mediacol)
+cuadradacol=(Col-Mediacol);
+cuadradacol=cuadradacol.*cuadradacol;
+colsum=0;
 for i= 1:T 
-    Pamsum=Pamsum+cuadrada(i);
+    colsum=colsum+cuadradacol(i);
 end
-desestandar=Pamsum/Con;
-disp ("La desviacion estandar del nivel de colesterol de personas con problemas cardiacos es de "+desestandar)
+desestandarcol=colsum/Con;
+disp ("La desviacion estandar del nivel de colesterol de personas con problemas cardiacos es de "+desestandarcol)
 %% 7.c Colesterol Sin
-Pam=0;
+Paco=0;
 for i= 1:T 
      if PC(i)==0
-        Pam=Pam+Col(i);
+        Paco=Paco+Col(i);
      else
-        Pam;
+        Paco;
      end
 end
-Media=Pam/Sin;
-disp ("La media del nivel de colesterol de personas sin problemas cardiacos es de  "+Media)
-cuadrada=(Col-Media);
-cuadrada=cuadrada.*cuadrada;
-Pamsum=0;
+Mediaco=Paco/Sin;
+disp ("La media del nivel de colesterol de personas sin problemas cardiacos es de  "+Mediaco)
+cuadradaco=(Col-Mediaco);
+cuadradaco=cuadradaco.*cuadradaco;
+cosum=0;
 for i= 1:T 
-    Pamsum=Pamsum+cuadrada(i);
+    cosum=cosum+cuadradaco(i);
 end
-desestandar=Pamsum/Sin;
-disp ("La desviacion estandar del nivel de colesterol de personas sin problemas cardiacos es de "+desestandar)
+desestandarco=cosum/Sin;
+disp ("La desviacion estandar del nivel de colesterol de personas sin problemas cardiacos es de "+desestandarco)
 %% Punto 8
 Num= input("Ingrese el ID del participante");
  disp ("El participante numero "+Num+" Tiene las siguientes caracteristicas:")
